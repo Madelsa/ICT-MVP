@@ -10,15 +10,18 @@ import { usePosts } from '@/app/context/posts'
 export default function LeftNavigation() {
   const { rewardPoints } = usePosts()
 
+  const navButtonClasses = "w-full justify-start text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--background))] hover:text-[hsl(var(--primary))] transition-colors duration-200"
+  const navButtonDisabledClasses = "w-full justify-start text-[hsl(var(--text-primary))] pointer-events-none"
+
   return (
-    <nav className="w-72 bg-white border-r border-[#E2E8F0] p-6 flex flex-col h-screen sticky top-0">
+    <nav className="w-72 bg-white border-r border-[hsl(var(--border))] p-6 flex flex-col h-screen sticky top-0">
       <div className="flex-1">
-        <h1 className="text-2xl font-bold text-[#0F172A] mb-8">
-          Product<span className="text-[#3B82F6]">Connect</span>
+        <h1 className="text-2xl font-bold text-[hsl(var(--text-primary))] mb-8">
+          Product<span className="text-[hsl(var(--primary))]">Connect</span>
         </h1>
         <ul className="space-y-2">
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] hover:bg-[#F8FAFC]" asChild>
+            <Button variant="ghost" className={navButtonClasses} asChild>
               <Link href="/">
                 <Home className="mr-2 h-5 w-5" />
                 Home
@@ -26,7 +29,7 @@ export default function LeftNavigation() {
             </Button>
           </li>
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] hover:bg-[#F8FAFC]" asChild>
+            <Button variant="ghost" className={navButtonClasses} asChild>
               <Link href="/my-deals">
                 <FileText className="mr-2 h-5 w-5" />
                 My Deals
@@ -34,31 +37,31 @@ export default function LeftNavigation() {
             </Button>
           </li>
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] hover:bg-[#F8FAFC]">
+            <Button variant="ghost" className={navButtonClasses}>
               <Bell className="mr-2 h-5 w-5" />
               Notifications
             </Button>
           </li>
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] hover:bg-[#F8FAFC]">
+            <Button variant="ghost" className={navButtonClasses}>
               <MessageCircle className="mr-2 h-5 w-5" />
               Messages
             </Button>
           </li>
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] hover:bg-[#F8FAFC]">
+            <Button variant="ghost" className={navButtonClasses}>
               <User className="mr-2 h-5 w-5" />
               Profile
             </Button>
           </li>
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] hover:bg-[#F8FAFC]">
+            <Button variant="ghost" className={navButtonClasses}>
               <Settings className="mr-2 h-5 w-5" />
               Settings
             </Button>
           </li>
           <li>
-            <Button variant="ghost" className="w-full justify-start text-[#0F172A] pointer-events-none">
+            <Button variant="ghost" className={navButtonDisabledClasses}>
               <Gift className="mr-2 h-5 w-5" />
               My Rewards: {rewardPoints}
             </Button>

@@ -44,6 +44,7 @@ export default function CommentSection({ postId, comments }: CommentSectionProps
           <Button
             type="submit"
             disabled={!comment.trim()}
+            className="bg-blue-500 text-white hover:bg-blue-600"
           >
             Post Comment
           </Button>
