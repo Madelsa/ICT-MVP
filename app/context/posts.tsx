@@ -21,6 +21,7 @@ interface Post {
 
 interface PostsContextType {
   posts: Post[]
+  rewardPoints: number
   addPost: (post: Post) => void
   addComment: (postId: string, comment: Comment) => void
   updateVotes: (postId: string, newVotes: number) => void
@@ -58,9 +59,11 @@ export function PostsProvider({ children }: { children: ReactNode }) {
       comments: [],
     }
   ])
+  const [rewardPoints, setRewardPoints] = useState(0)
 
   const addPost = (post: Post) => {
     setPosts(prev => [post, ...prev])
+    setRewardPoints(prev => prev + 1)
   }
 
   const addComment = (postId: string, comment: Comment) => {
@@ -80,7 +83,7 @@ export function PostsProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <PostsContext.Provider value={{ posts, addPost, addComment, updateVotes }}>
+    <PostsContext.Provider value={{ posts, rewardPoints, addPost, addComment, updateVotes }}>
       {children}
     </PostsContext.Provider>
   )

@@ -55,13 +55,13 @@ export default function NewPost() {
       avatar: '/placeholder.svg?height=40&width=40',
       content: content.trim(),
       timestamp: 'Just now',
-      initialVotes: 0,
+      initialVotes: 1,
       images: imagePreviews,
       comments: []
     }
 
     addPost(newPost)
-    router.push('/')
+    router.push('/?notification=Thanks for sharing! You earned a point for your new deal 🎉&new_post=true')
   }
 
   return (

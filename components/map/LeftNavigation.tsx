@@ -1,10 +1,15 @@
+'use client'
 import { Button } from '@/components/ui/button'
-import { Home, Bell, MessageCircle, User, Settings, LogOut, FileText, PlusCircle, Search } from 'lucide-react'
+import { Home, Bell, MessageCircle, User, Settings, LogOut, FileText, Gift } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
+import { useState, useEffect } from 'react'
+import { usePosts } from '@/app/context/posts'
 
 export default function LeftNavigation() {
+  const { rewardPoints } = usePosts()
+
   return (
     <nav className="w-64 bg-white shadow-md p-4 flex flex-col h-full sticky top-6">
       <div>
@@ -50,11 +55,11 @@ export default function LeftNavigation() {
               Settings
             </Button>
           </li>
-          <li className="px-4 py-2 text-blue-600">
-            <div className="flex items-center gap-2">
-              <span>My Rewards:</span>
-              <span className="font-semibold">0</span>
-            </div>
+          <li>
+            <Button variant="ghost" className="w-full justify-start text-blue-600 pointer-events-none">
+              <Gift className="mr-2 h-5 w-5" />
+              My Rewards: {rewardPoints}
+            </Button>
           </li>
         </ul>
       </div>

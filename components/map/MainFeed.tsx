@@ -5,13 +5,32 @@ import { Button } from '@/components/ui/button'
 import { Search, PlusCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { usePosts } from '@/app/context/posts'
+import { useState, useEffect } from 'react'
 
 export default function MainFeed() {
   const router = useRouter()
   const { posts } = usePosts()
+  const [showNotification, setShowNotification] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState('')
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const notification = params.get('notification')
+    if (notification) {
+      setNotificationMessage(notification)
+      setShowNotification(true)
+      router.replace('/')
+      setTimeout(() => setShowNotification(false), 5000)
+    }
+  }, [router])
 
   return (
     <div className="w-full max-w-2xl mx-auto">
+      {showNotification && (
+        <div className="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg animate-fade-in-down">
+          {notificationMessage}
+        </div>
+      )}
       <h2 className="text-2xl font-bold mb-6 text-blue-800 border-b-2 border-blue-100 pb-2">Latest Deals</h2>
       <div className="flex items-center justify-between gap-4 mb-6">
         <div className="relative flex-1">
