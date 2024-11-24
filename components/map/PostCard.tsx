@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowUp, ArrowDown, MessageCircle, Share2 } from 'lucide-react'
 import Image from 'next/image'
 import CommentSection from './CommentSection'
-import { usePosts } from '@/app/context/posts'
+import { usePosts, Comment } from '@/app/context/posts'
 
 interface PostCardProps {
   id: string

@@ -1,7 +1,7 @@
 "use client"
 import { createContext, useContext, useState, ReactNode } from 'react'
 
-interface Comment {
+export interface Comment {
   username: string
   avatar: string
   content: string

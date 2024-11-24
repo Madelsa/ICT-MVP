@@ -4,16 +4,11 @@ import { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { usePosts } from '@/app/context/posts'
+import { usePosts, Comment } from '@/app/context/posts'
 
 interface CommentSectionProps {
   postId: string
-  comments: {
-    username: string
-    avatar: string
-    content: string
-    timestamp: string
-  }[]
+  comments: Comment[]
 }
 
 export default function CommentSection({ postId, comments }: CommentSectionProps) {
