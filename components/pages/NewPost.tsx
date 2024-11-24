@@ -42,19 +42,25 @@ export default function NewPost() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!content.trim()) {
+      return
+    }
+    
     setIsSubmitting(true)
 
     const newPost = {
+      id: Date.now().toString(),
       username: 'Current User',
       avatar: '/placeholder.svg?height=40&width=40',
-      content: content,
+      content: content.trim(),
       timestamp: 'Just now',
       initialVotes: 0,
-      images: imagePreviews // Add images to the post
+      images: imagePreviews,
+      comments: []
     }
 
     addPost(newPost)
-    
     router.push('/')
   }
 

@@ -6,18 +6,28 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowUp, ArrowDown, MessageCircle, Share2 } from 'lucide-react'
 import Image from 'next/image'
+import CommentSection from './CommentSection'
+import { usePosts } from '@/app/context/posts'
 
 interface PostCardProps {
+  id: string
   username: string
   avatar: string
   content: string
   timestamp: string
   initialVotes?: number
   images?: string[]
+  comments: Comment[]
 }
 
-export default function PostCard({ username, avatar, content, timestamp, initialVotes = 0, images }: PostCardProps) {
-  const [votes, setVotes] = useState(initialVotes)
+export default function PostCard({ id, username, avatar, content, timestamp, initialVotes = 0, images, comments }: PostCardProps) {
+  const [showComments, setShowComments] = useState(false)
+  const { updateVotes } = usePosts()
+
+  const handleVote = (increment: boolean) => {
+    const newVotes = increment ? initialVotes + 1 : initialVotes - 1
+    updateVotes(id, newVotes)
+  }
 
   return (
     <Card className="overflow-hidden transition-all duration-200 hover:shadow-md">
@@ -53,36 +63,46 @@ export default function PostCard({ username, avatar, content, timestamp, initial
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setVotes(prev => prev + 1)}
+            onClick={() => handleVote(true)}
             className="text-blue-600 hover:bg-blue-100 hover:text-blue-700"
           >
             <ArrowUp className="h-5 w-5" />
           </Button>
           <span className={`font-medium ${
-            votes > 0 ? 'text-green-600' : 
-            votes < 0 ? 'text-red-600' : 
+            initialVotes > 0 ? 'text-green-600' : 
+            initialVotes < 0 ? 'text-red-600' : 
             'text-gray-600'
           }`}>
-            {votes}
+            {initialVotes}
           </span>
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setVotes(prev => prev - 1)}
+            onClick={() => handleVote(false)}
             className="text-blue-600 hover:bg-blue-100 hover:text-blue-700"
           >
             <ArrowDown className="h-5 w-5" />
           </Button>
         </div>
-        <Button variant="ghost" size="sm" className="text-blue-600 hover:bg-blue-100 hover:text-blue-700">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="text-blue-600 hover:bg-blue-100 hover:text-blue-700"
+          onClick={() => setShowComments(!showComments)}
+        >
           <MessageCircle className="mr-2 h-4 w-4" />
-          Comment
+          {comments.length > 0 ? `Comments (${comments.length})` : 'Comment'}
         </Button>
         <Button variant="ghost" size="sm" className="text-blue-600 hover:bg-blue-100 hover:text-blue-700">
           <Share2 className="mr-2 h-4 w-4" />
           Share
         </Button>
       </CardFooter>
+      {showComments && (
+        <div className="border-t p-4">
+          <CommentSection postId={id} comments={comments} />
+        </div>
+      )}
     </Card>
   )
 }

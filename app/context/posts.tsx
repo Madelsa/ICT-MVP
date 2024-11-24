@@ -1,18 +1,29 @@
 "use client"
 import { createContext, useContext, useState, ReactNode } from 'react'
 
-interface Post {
+interface Comment {
   username: string
   avatar: string
   content: string
   timestamp: string
-  initialVotes?: number
+}
+
+interface Post {
+  id: string
+  username: string
+  avatar: string
+  content: string
+  timestamp: string
+  initialVotes: number
   images?: string[]
+  comments: Comment[]
 }
 
 interface PostsContextType {
   posts: Post[]
   addPost: (post: Post) => void
+  addComment: (postId: string, comment: Comment) => void
+  updateVotes: (postId: string, newVotes: number) => void
 }
 
 const PostsContext = createContext<PostsContextType | undefined>(undefined)
@@ -20,31 +31,56 @@ const PostsContext = createContext<PostsContextType | undefined>(undefined)
 export function PostsProvider({ children }: { children: ReactNode }) {
   const [posts, setPosts] = useState<Post[]>([
     {
-      username: 'Ahmed Hassan',
+      id: '1',
+      username: 'John Doe',
       avatar: '/placeholder.svg?height=40&width=40',
-      content: 'Amazing deal alert! 🔥 Found the latest iPhone 15 Pro Max (256GB) for AED 4,299 at Sharaf DG Mall of Emirates. Regular price is AED 4,799. Limited time offer!',
-      timestamp: '2 hours ago'
+      content: 'Found a great deal on the new iPhone 15 Pro at Emirates Mall! 500 AED off with code NEWPHONE2024',
+      timestamp: '2 hours ago',
+      initialVotes: 25,
+      comments: [],
     },
     {
-      username: 'Sara Al Mahmoud',
+      id: '2',
+      username: 'Sarah Ahmed',
       avatar: '/placeholder.svg?height=40&width=40',
-      content: 'Just spotted a great deal on Samsung 65" QLED TV at Carrefour City Centre. AED 2,999 instead of AED 3,499. They also offer free delivery and installation! Hurry up, only 5 units left.',
-      timestamp: '4 hours ago'
+      content: 'Carrefour has a massive sale on Samsung TVs this weekend. 65" QLED for just 2999 AED!',
+      timestamp: '5 hours ago',
+      initialVotes: 42,
+      comments: [],
     },
     {
-      username: 'Mohammed Ali',
+      id: '3',
+      username: 'Mike Wilson',
       avatar: '/placeholder.svg?height=40&width=40',
-      content: "PSA: Amazon.ae has the MacBook Air M2 (8GB/256GB) for AED 3,799 with an additional 10% off when using ADCB card. Lowest price I have seen this year! Link in comments.",
-      timestamp: '6 hours ago'
+      content: 'Amazon.ae has 25% off on all Apple accessories today. Just picked up an Apple Watch charger for 75 AED.',
+      timestamp: '1 day ago',
+      initialVotes: 15,
+      comments: [],
     }
   ])
 
   const addPost = (post: Post) => {
-    setPosts(prevPosts => [post, ...prevPosts])
+    setPosts(prev => [post, ...prev])
+  }
+
+  const addComment = (postId: string, comment: Comment) => {
+    setPosts(prev => prev.map(post => 
+      post.id === postId 
+        ? { ...post, comments: [...post.comments, comment] }
+        : post
+    ))
+  }
+
+  const updateVotes = (postId: string, newVotes: number) => {
+    setPosts(prev => prev.map(post =>
+      post.id === postId
+        ? { ...post, initialVotes: newVotes }
+        : post
+    ))
   }
 
   return (
-    <PostsContext.Provider value={{ posts, addPost }}>
+    <PostsContext.Provider value={{ posts, addPost, addComment, updateVotes }}>
       {children}
     </PostsContext.Provider>
   )
