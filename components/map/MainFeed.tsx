@@ -12,7 +12,7 @@ export default function MainFeed() {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6 text-blue-800 border-b-2 border-blue-100 pb-2">Latest Posts</h2>
+      <h2 className="text-2xl font-bold mb-6 text-blue-800 border-b-2 border-blue-100 pb-2">Latest Deals</h2>
       <div className="flex items-center justify-between gap-4 mb-6">
         <div className="relative flex-1">
           <Input 
@@ -23,10 +23,10 @@ export default function MainFeed() {
         </div>
         <Button 
           className="bg-blue-500 text-white hover:bg-blue-600"
-          onClick={() => router.push('/posts/new')}
+          onClick={() => router.push('/new-deal')}
         >
           <PlusCircle className="mr-2 h-5 w-5" />
-          New Post
+          New Deal
         </Button>
       </div>
       <div className="space-y-6">

@@ -62,7 +62,7 @@ export default function NewPost() {
     <div className="container max-w-2xl mx-auto px-4 py-8">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-blue-800">Create New Post</CardTitle>
+          <CardTitle className="text-2xl font-bold text-blue-800">Create New Deal</CardTitle>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">

@@ -20,9 +20,9 @@ export default function LeftNavigation() {
           </li>
           <li>
             <Button variant="ghost" className="w-full justify-start text-blue-600 hover:bg-blue-50" asChild>
-              <Link href="/my-posts">
+              <Link href="/my-deals">
                 <FileText className="mr-2 h-5 w-5" />
-                My Posts
+                My Deals
               </Link>
             </Button>
           </li>
