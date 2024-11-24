@@ -8,7 +8,12 @@ import { usePosts } from '@/app/context/posts'
 
 interface CommentSectionProps {
   postId: string
-  comments: Comment[]
+  comments: {
+    username: string
+    avatar: string
+    content: string
+    timestamp: string
+  }[]
 }
 
 export default function CommentSection({ postId, comments }: CommentSectionProps) {
