@@ -49,7 +49,7 @@ export default function Sidebar() {
             {suggestedConnections.map((connection, index) => (
               <li key={index} className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-8 w-8 ring-2 ring-[hsl(var(--primary))] ring-offset-2">
                     <AvatarImage src={connection.avatar} alt={connection.name} />
                     <AvatarFallback>{connection.name[0]}</AvatarFallback>
                   </Avatar>
