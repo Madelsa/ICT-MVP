@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowUp, ArrowDown, MessageCircle, Share2 } from 'lucide-react'
+import Image from 'next/image'
 
 interface PostCardProps {
   username: string
@@ -12,9 +13,10 @@ interface PostCardProps {
   content: string
   timestamp: string
   initialVotes?: number
+  images?: string[]
 }
 
-export default function PostCard({ username, avatar, content, timestamp, initialVotes = 0 }: PostCardProps) {
+export default function PostCard({ username, avatar, content, timestamp, initialVotes = 0, images }: PostCardProps) {
   const [votes, setVotes] = useState(initialVotes)
 
   return (
@@ -29,8 +31,22 @@ export default function PostCard({ username, avatar, content, timestamp, initial
           <p className="text-sm text-blue-500">{timestamp}</p>
         </div>
       </CardHeader>
-      <CardContent className="p-4">
+      <CardContent className="p-4 space-y-4">
         <p className="text-gray-700 leading-relaxed">{content}</p>
+        {images && images.length > 0 && (
+          <div className="grid grid-cols-2 gap-4">
+            {images.map((image, index) => (
+              <div key={index} className="relative aspect-[4/3]">
+                <Image
+                  src={image}
+                  alt={`Post image ${index + 1}`}
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </CardContent>
       <CardFooter className="flex justify-between bg-blue-50 p-4">
         <div className="flex items-center gap-2">

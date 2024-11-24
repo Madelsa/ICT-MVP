@@ -16,6 +16,7 @@ export default function Sidebar() {
     { name: 'Mike Johnson', avatar: '/placeholder.svg?height=32&width=32' },
     { name: 'Sarah Lee', avatar: '/placeholder.svg?height=32&width=32' }
   ]
+
   const suggestedCommunities = [
     { name: 'Community 1', members: 5280 },
     { name: 'Community 2', members: 9750 },
@@ -24,25 +25,26 @@ export default function Sidebar() {
 
   return (
     <div className="w-80 space-y-6">
-      <Card className="overflow-hidden border border-border">
-        <CardHeader className="bg-secondary">
-          <CardTitle className="text-secondary-foreground">Trending Topics</CardTitle>
+      <Card className="overflow-hidden">
+        <CardHeader className="bg-blue-500">
+          <CardTitle className="text-white">Trending Topics</CardTitle>
         </CardHeader>
-        <CardContent className="bg-card p-4">
+        <CardContent className="bg-white p-4">
           <ul className="space-y-2">
             {trendingTopics.map((topic, index) => (
-              <li key={index} className="text-primary hover:text-primary/80 cursor-pointer transition-colors duration-200">
+              <li key={index} className="text-blue-600 hover:text-blue-800 cursor-pointer transition-colors duration-200">
                 {topic}
               </li>
             ))}
           </ul>
         </CardContent>
       </Card>
-      <Card className="overflow-hidden border border-border">
-        <CardHeader className="bg-secondary">
-          <CardTitle className="text-secondary-foreground">Suggested Connections</CardTitle>
+
+      <Card className="overflow-hidden">
+        <CardHeader className="bg-blue-500">
+          <CardTitle className="text-white">Suggested Connections</CardTitle>
         </CardHeader>
-        <CardContent className="bg-card p-4">
+        <CardContent className="bg-white p-4">
           <ul className="space-y-4">
             {suggestedConnections.map((connection, index) => (
               <li key={index} className="flex items-center justify-between">
@@ -51,9 +53,9 @@ export default function Sidebar() {
                     <AvatarImage src={connection.avatar} alt={connection.name} />
                     <AvatarFallback>{connection.name[0]}</AvatarFallback>
                   </Avatar>
-                  <span className="text-foreground">{connection.name}</span>
+                  <span className="text-blue-800">{connection.name}</span>
                 </div>
-                <Button variant="outline" size="sm" className="ml-2">
+                <Button className="bg-blue-500 text-white hover:bg-blue-600" size="sm">
                   Connect
                 </Button>
               </li>
@@ -61,24 +63,25 @@ export default function Sidebar() {
           </ul>
         </CardContent>
       </Card>
-      <Card className="overflow-hidden border border-border">
-        <CardHeader className="bg-secondary">
-          <CardTitle className="text-secondary-foreground">Suggested Communities</CardTitle>
+
+      <Card className="overflow-hidden">
+        <CardHeader className="bg-blue-500">
+          <CardTitle className="text-white">Suggested Communities</CardTitle>
         </CardHeader>
-        <CardContent className="bg-card p-4">
+        <CardContent className="bg-white p-4">
           <ul className="space-y-4">
             {suggestedCommunities.map((community, index) => (
               <li key={index} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Users className="h-5 w-5 text-primary" />
+                  <Users className="h-5 w-5 text-blue-600" />
                   <div className="flex flex-col">
-                    <span className="text-foreground">{community.name}</span>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-blue-800">{community.name}</span>
+                    <span className="text-xs text-blue-500">
                       {community.members.toLocaleString()} members
                     </span>
                   </div>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button className="bg-blue-500 text-white hover:bg-blue-600" size="sm">
                   Join
                 </Button>
               </li>
