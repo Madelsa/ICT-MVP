@@ -30,15 +30,15 @@ export default function PostCard({ id, username, avatar, content, timestamp, ini
   }
 
   return (
-    <Card className="overflow-hidden transition-all duration-200 hover:shadow-md">
-      <CardHeader className="flex flex-row items-center gap-4 bg-blue-50 p-4">
-        <Avatar className="h-12 w-12 border-2 border-white shadow-sm">
-          <AvatarImage src={avatar} alt={username} />
+    <Card className="overflow-hidden border-none shadow-sm hover:shadow-md transition-all duration-200">
+      <CardHeader className="flex flex-row items-center gap-4 p-4 bg-white">
+        <Avatar className="h-12 w-12 ring-2 ring-[#3B82F6] ring-offset-2">
+          <AvatarImage src={avatar} />
           <AvatarFallback>{username[0]}</AvatarFallback>
         </Avatar>
         <div>
-          <h3 className="font-semibold text-blue-800">{username}</h3>
-          <p className="text-sm text-blue-500">{timestamp}</p>
+          <h3 className="font-medium text-[#0F172A]">{username}</h3>
+          <p className="text-sm text-[#64748B]">{timestamp}</p>
         </div>
       </CardHeader>
       <CardContent className="p-4 space-y-4">
