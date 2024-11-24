@@ -11,10 +11,10 @@ export default function LeftNavigation() {
   const { rewardPoints } = usePosts()
 
   return (
-    <nav className="w-64 bg-white shadow-md p-4 flex flex-col h-full sticky top-6">
-      <div>
-        <h1 className="text-2xl font-bold text-blue-600 mb-6">ProductConnect</h1>
-        <ul className="space-y-2">
+    <nav className="w-64 bg-white shadow-md p-4 flex flex-col h-screen sticky top-0">
+      <div className="flex-1 min-h-0">
+        <h1 className="text-2xl font-bold text-blue-600 mb-4">ProductConnect</h1>
+        <ul className="space-y-1">
           <li>
             <Button variant="ghost" className="w-full justify-start text-blue-600 hover:bg-blue-50" asChild>
               <Link href="/">
@@ -63,8 +63,8 @@ export default function LeftNavigation() {
           </li>
         </ul>
       </div>
-      <div className="mt-auto pt-4 border-t border-blue-100">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="pt-3 border-t border-blue-100">
+        <div className="flex items-center gap-3 mb-3">
           <Avatar className="h-10 w-10 border-2 border-blue-200">
             <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
             <AvatarFallback>JD</AvatarFallback>

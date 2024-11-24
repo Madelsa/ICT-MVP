@@ -55,7 +55,7 @@ export default function NewPost() {
       avatar: '/placeholder.svg?height=40&width=40',
       content: content.trim(),
       timestamp: 'Just now',
-      initialVotes: 1,
+      initialVotes: 0,
       images: imagePreviews,
       comments: []
     }
