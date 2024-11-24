@@ -24,7 +24,7 @@ export default function Sidebar() {
   ]
 
   return (
-    <div className="w-80 space-y-6">
+    <div className="w-80 space-y-6 pt-8">
       <Card className="overflow-hidden">
         <CardHeader className="bg-blue-500">
           <CardTitle className="text-white">Trending Topics</CardTitle>

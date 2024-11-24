@@ -25,9 +25,9 @@ export default function MainFeed() {
   }, [router])
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto pt-8">
       {showNotification && (
-        <div className="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg animate-fade-in-down">
+        <div className={`fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow-lg animate-fade-in-down`}>
           {notificationMessage}
         </div>
       )}
